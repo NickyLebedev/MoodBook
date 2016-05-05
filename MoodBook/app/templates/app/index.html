@@ -1,0 +1,68 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>MoodBook</h1>
+    <p class="lead">MoodBook is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="#" class="btn btn-primary btn-large" data-toggle="modal" data-target="#register">Register &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started with MB</h2>
+        <p>
+            MoodBook gives you a powerful, modern way to build your emotion book that
+            enables store emotions and gives you full information about your emotional state.
+        </p>
+        <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>The Python Package Index is a repository of software for the Python programming language.</p>
+        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Register to MB</h2>
+        <p>You can start create your book today for free.</p>
+        <!--<a href="#"  data-toggle="modal" data-target="#myModal">Sign in</a>-->
+        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title">Register</h2>
+                <p class="text-center">Using your email address</p>
+                <form action="." method="post" class="form-row">
+                    {% csrf_token %}
+                    <div>
+                        <div class="col-md-10">{{ form.username }}</div>
+                        <div class="col-md-10">{{ form.full_name }}</div>
+                        <div class="col-md-10">{{ form.mail }}</div>
+                        <div class="col-md-10">{{ form.password1 }}</div>
+                        <div class="col-md-10">{{ form.password2 }}</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="hidden" name="next" value="/user/diary" />
+                            <input type="submit" value="Create free account" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

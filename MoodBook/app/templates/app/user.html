@@ -1,0 +1,31 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <h1>MBStorage</h1>
+    <div id = sidebar>
+        <div>
+            <h2>User credentials</h2>
+            <ul>
+                <li><p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p></li>
+                <li><p><b>Username:</b> {{ user.username }}</p></li>
+                <li><p><b>Mail:</b> {{ user.email }}</p></li>
+                <button class="btn btn-group">Edit profile</button>
+            </ul>
+        </div>
+        <hr/>
+        <div>
+            <p>Doctor's profiles and ratings</p>
+        </div>
+    </div>
+
+
+    <div id="history">
+        {% for record in records %}
+            <div class="well well-lg">
+                <a href="#">{{ record.name }}</a>
+                <small>{{ record.date}}</small>
+                <p>{{ record.mood.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
