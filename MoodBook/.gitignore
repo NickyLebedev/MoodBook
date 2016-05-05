@@ -110,6 +110,7 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+*.mht
 
 # Visual Studio profiler
 *.psess
