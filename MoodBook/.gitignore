@@ -111,6 +111,7 @@ ipch/
 *.sdf
 *.cachefile
 *.mht
+*.exe
 
 # Visual Studio profiler
 *.psess
