@@ -19,8 +19,8 @@ class Record(models.Model):
 
 
 class EmotionList(models.Model):
-    angry = models.IntegerField(max_length=10)
-    happy = models.IntegerField(max_length=10)
-    suprise = models.IntegerField(max_length=10)
-    sadness = models.IntegerField(max_length=10)
+    angry = models.IntegerField()
+    happy = models.IntegerField()
+    suprise = models.IntegerField()
+    sadness = models.IntegerField()
     mood = models.ForeignKey(Mood)
