@@ -11,7 +11,9 @@ from django.contrib.auth import login, authenticate
 from .models import *
 from .forms import RegisterForm
 from django.contrib.auth.models import User, Group
+from django.db import transaction
 
+@transaction.atomic
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
@@ -42,6 +44,7 @@ def home(request):
     )
 
 @login_required
+@transaction.atomic
 def diary(request):
     assert isinstance(request, HttpRequest)
     #user = User.objects.get(pk = request.user.pk)
@@ -57,7 +60,20 @@ def diary(request):
                           'year': datetime.now().year
                       }))
     else:
-        return render(request, 'app/doctor.html', {'group': group.name})
+        user_ids = DoctorUsers.objects.filter(doctor_id=request.user.id)
+        users = []
+        for u in user_ids:
+            user = User.objects.get(pk = u.user_id)
+            users.append(user)
+
+        return render(request,
+                      'app/doctor.html',
+                      context_instance = RequestContext(request,
+                      {
+                          'year': datetime.now().year,
+                          'title': "Doctor's page",
+                          'users': users
+                      }))
 
 
 #angry - 0
@@ -76,15 +92,13 @@ def detection(request):
             emotion = d.split('=')
             emotions.append(emotion[1])
 
-        return HttpResponseRedirect('newrecord')
-
-
     return render(
         request,
         'app/realtime.html',
         context_instance = RequestContext(request,
         {
-            'title':'MBDetection'
+            'title':'MBDetection',
+            'year': datetime.now().year
         })
     )
 

@@ -24,3 +24,7 @@ class EmotionList(models.Model):
     suprise = models.IntegerField()
     sadness = models.IntegerField()
     mood = models.ForeignKey(Mood)
+
+class DoctorUsers(models.Model):
+    doctor_id = models.IntegerField()
+    user_id = models.IntegerField()
