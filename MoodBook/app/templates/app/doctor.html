@@ -3,4 +3,13 @@
 {% block content %}
     <h1>Doctor's page</h1>
     <input placeholder="User name" class="form-control"/>
+    <div id="users">
+        {% for user in users %}
+            <div class="well well-lg">
+                <a href="#">{{ user.username }}</a>
+                <small>{{ user.first_name }}</small>
+                <p>{{ user.email }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
