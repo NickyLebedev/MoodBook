@@ -19,10 +19,10 @@ class Record(models.Model):
 
 
 class EmotionList(models.Model):
-    angry = models.IntegerField()
-    happy = models.IntegerField()
-    suprise = models.IntegerField()
-    sadness = models.IntegerField()
+    angry = models.FloatField()
+    happy = models.FloatField()
+    suprise = models.FloatField()
+    sadness = models.FloatField()
     mood = models.ForeignKey(Mood)
 
 class DoctorUsers(models.Model):

@@ -16,8 +16,12 @@
         <div>
             <p>Doctor's profiles and ratings</p>
             {% for doctor in doctors %}
-                <div>
-                    <a href="#">{{ doctor.first_name }}</a>
+                <div class="sidebar-doctor">
+                    <a href="#">{{ doctor.first_name }} {{ doctor.last_name }}</a><br/>
+                    <div class="star-ratings-sprite sidebar-star">
+                        <span style="width:42%" class="star-ratings-sprite-rating"></span>
+                    </div>
+                <br/>
                 </div>
             {% endfor %}
         </div>

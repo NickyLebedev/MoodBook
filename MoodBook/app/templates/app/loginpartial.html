@@ -1,4 +1,10 @@
 {% if user.is_authenticated %}
+<div class="navbar-nav raiting">
+    <span class="navbar-brand">Raiting</span>
+    <div class="star-ratings-sprite star-pos">
+        <span style="width:52%" class="star-ratings-sprite-rating"></span>
+    </div>
+</div>
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
     {% csrf_token %}
     <ul class="nav navbar-nav navbar-right">
