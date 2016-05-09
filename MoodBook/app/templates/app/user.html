@@ -15,6 +15,11 @@
         <hr/>
         <div>
             <p>Doctor's profiles and ratings</p>
+            {% for doctor in doctors %}
+                <div>
+                    <a href="#">{{ doctor.first_name }}</a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

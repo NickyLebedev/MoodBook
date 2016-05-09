@@ -51,21 +51,18 @@ def diary(request):
     group = request.user.groups.all()[0]
     if group.name == 'user':
         records = Record.objects.filter(user__username=request.user.username)
+        doctors = User.objects.filter(groups__name__icontains='doctor')
         return render(request,
                       'app/user.html',
                       context_instance= RequestContext(request,
                       {
                           'records': records,
                           'title': 'MBStorage',
-                          'year': datetime.now().year
+                          'year': datetime.now().year,
+                          'doctors' : doctors
                       }))
     else:
-        user_ids = DoctorUsers.objects.filter(doctor_id=request.user.id)
-        users = []
-        for u in user_ids:
-            user = User.objects.get(pk = u.user_id)
-            users.append(user)
-
+        users = DoctorUsers.objects.filter(user__username=request.user.username)
         return render(request,
                       'app/doctor.html',
                       context_instance = RequestContext(request,
