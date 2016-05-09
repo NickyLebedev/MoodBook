@@ -26,5 +26,24 @@ class EmotionList(models.Model):
     mood = models.ForeignKey(Mood)
 
 class DoctorUsers(models.Model):
-    doctor_id = models.IntegerField()
-    user_id = models.IntegerField()
+    user = models.ForeignKey(User, related_name="fk_doctor", default="")
+    subscriber = models.ForeignKey(User, related_name="fk_user", default="")
+
+#raitings
+#user - raiting for records
+#doctor - doctor's raiting
+class UserDetails(models.Model):
+    user = models.ForeignKey(User)
+    value = models.FloatField(default=0)
+    count = models.IntegerField(default=0)
+    mark = models.FloatField(default=0)
+
+    def updateRaitings(self, val):
+        self.value += val
+        self.count += 1
+        self.mark = self.value / self.count
+
+
+
+
+
